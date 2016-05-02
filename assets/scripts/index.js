@@ -52,7 +52,7 @@ $('#submitQuestionForm').on('submit', function (event) {
   authApi.submitQuestion(authUi.success, authUi.failure, data);
 });
 
-// $('.getGames').on('click', function (event) {
-//   event.preventDefault();
-//   authApi.index(authUi.indexSuccess, authUi.failure);
-// });
+$('.getQuestionsLink').on('click', function (event) {
+  event.preventDefault();
+  authApi.index(authUi.indexSuccess, authUi.failure);
+});

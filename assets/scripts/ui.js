@@ -30,10 +30,10 @@ const signOutSuccess = () => {
 //   console.log('update worked');
 // };
 //
-// const indexSuccess = function (data) {
-//   console.log(data);
-//   $(".getGames").append("<p>You Have Played: " + data.games.length + " Games!</p>");
-// };
+const indexSuccess = function (data) {
+  console.log(data);
+  $(".getModalBody").append("<p>You Have Submitted: " + data.questions + "</p>");
+};
 
 module.exports = {
   failure,
@@ -41,6 +41,6 @@ module.exports = {
   signInSuccess,
   signOutSuccess,
   // updateSuccess,
-  // indexSuccess,
+  indexSuccess,
   // createSuccess,
 };

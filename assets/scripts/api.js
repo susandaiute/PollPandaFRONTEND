@@ -78,34 +78,19 @@ const submitQuestion = (success, failure, data) => {
   .fail(failure);
 };
 
-
-
-
-// const create = (success, failure) => {
-//   $.ajax({
-//     method: 'POST',
-//     url: app.api + '/games',
-//     headers: {
-//       Authorization: 'Token token=' + app.user.token,
-//     },
-//   }).done(success)
-//   .fail(failure);
-// };
-//
-//
-// const index = (success, fail) => {
-//   console.log('Started request');
-//   $.ajax({
-//       method:'GET',
-//       url: app.api + '/games',
-//       headers: {
-//         Authorization: 'Token token=' + app.user.token,
-//       }
-//   })
-//   .done(success)
-//   .fail(fail);
-//   console.log('Request queued');
-// };
+const index = (success, fail) => {
+  console.log('Started request');
+  $.ajax({
+      method:'GET',
+      url: app.api + '/questions',
+      headers: {
+        Authorization: 'Token token=' + app.user.token,
+      }
+  })
+  .done(success)
+  .fail(fail);
+  console.log('Request queued');
+};
 
 
 
@@ -117,6 +102,5 @@ module.exports = {
   updatePassword,
   answerPoll,
   submitQuestion,
-  //create,
-  //index,
+  index,
 };

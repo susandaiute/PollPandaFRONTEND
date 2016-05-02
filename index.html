@@ -26,10 +26,13 @@
           <ul class="nav navbar-nav navbar-left">
             <li data-toggle="modal" data-target="#submitQuestion"><a href="#">Submit Your Own Question</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-left">
+            <li data-toggle="modal" data-target="#getQuestions" id="getQuestionslink "><a href="#">See My Questions</a></li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li id="register" data-toggle="modal" data-target="#signUp"><a href="#">Register</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li data-toggle="modal" data-target="#signIn"><a href="#">Sign In</li>
                 <li data-toggle="modal" data-target="#update"><a href="#">Update Password</a></li>
@@ -81,6 +84,22 @@
     </div>
   </div>
   <!-- End Submit Question Modal -->
+
+  <!-- Begin Get Questions Modal -->
+  <div class="modal fade get questions" id="getQuestions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">My Questions</h4>
+        </div>
+        <div class="modal-body" id="getModalBody">
+            STUFF GOES HERE
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Get Questions Modal -->
 
   <!-- Begin Register Modal -->
   <div class="modal fade sign up" id="signUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
