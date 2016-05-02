@@ -48,9 +48,8 @@ $('#panelA').on('submit', function (event) {
 
 $('#submitQuestionForm').on('submit', function (event) {
   event.preventDefault();
-  console.log('fired')
   let data = getFormFields(this);
-  authApi.submitQuestion(authUi.successuccess, authUi.failure, data);
+  authApi.submitQuestion(authUi.success, authUi.failure, data);
 });
 
 // $('.getGames').on('click', function (event) {

@@ -59,19 +59,19 @@
           <form name="submitQuestionForm" id="submitQuestionForm">
             <div class="form-group">
               <label for="inputQuestion">Question</label>
-              <input type="text" name="submitQuestion[question]" value="Question" class="form-control grabthis" id="exampleQuestion1" placeholder="Question">
+              <input type="text" name="question[title]" class="form-control grabthis" id="exampleQuestion1" placeholder="Question">
             </div>
             <div class="form-group">
               <label for="exampleAnswer1">Answer 1</label>
-              <input type="text" name="submitQuestion[answer1]" value="Answer" class="form-control" id="exampleAnswer1" placeholder="Answer 1">
+              <input type="text" name="question[answer1]" class="form-control" id="exampleAnswer1" placeholder="Answer 1">
             </div>
             <div class="form-group">
               <label for="exampleAnswer2">Answer 2</label>
-              <input name="submitQuestion[answer2]" type="text" value="Answer" class="form-control" placeholder="Answer 2">
+              <input name="question[answer2]" type="text" class="form-control" placeholder="Answer 2">
             </div>
             <div class="form-group">
               <label for="exampleAnswer3">Answer 3</label>
-              <input type="text" name="submitQuestion[answer3]" value="Answer" class="form-control" placeholder="Answer 3">
+              <input type="text" name="question[answer3]" class="form-control" placeholder="Answer 3">
             </div>
             <button id='submitPost' type="submit" class="btn btn-default">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,15 +94,15 @@
           <form name="register" id="registerForm">
             <div class="form-group">
               <label for="exampleInputEmailsignup">Email address</label>
-              <input type="email" name="credentials[email]" value="an@example.email" class="form-control grabthis" id="exampleInputEmail1" placeholder="Email">
+              <input type="email" name="credentials[email]" class="form-control grabthis" id="exampleInputEmail1" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="exampleInputPasswordSignUp">Password</label>
-              <input type="password" name="credentials[password]" value="password" class="form-control" id="exampleInputPasswordSignUp" placeholder="Password">
+              <input type="password" name="credentials[password]" class="form-control" id="exampleInputPasswordSignUp" placeholder="Password">
             </div>
             <div class="form-group">
               <label for="exampleConfirmPassword1">Confirm Password</label>
-              <input name="credentials[password_confirmation]" type="password" value="an example password" class="form-control" id="exampleConfirmPassword1" placeholder="Confirm Password">
+              <input name="credentials[password_confirmation]" type="password" class="form-control" id="exampleConfirmPassword1" placeholder="Confirm Password">
             </div>
             <button id='submitPost' type="submit" class="btn btn-default">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -125,11 +125,11 @@
           <form name="signInForm" id="signInForm">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input name="credentials[email]" type="text" value="an@example.email" class="form-control grabthis" id="exampleInputEmail1" placeholder="Email">
+              <input name="credentials[email]" type="text" class="form-control grabthis" id="exampleInputEmail1" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input name="credentials[password]" type="password" value="an example password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <input name="credentials[password]" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <button id="signIn" type="submit" class="btn btn-default">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -152,11 +152,11 @@
           <form name="updatePassword" id="updatePasswordForm">
             <div class="form-group">
               <label for="InputPasswordUpdateOld">Old Password</label>
-              <input type="password" name="credentials[oldpassword]" value="an example password" class="form-control" id="exampleInputPasswordSignUp" placeholder="Password">
+              <input type="password" name="credentials[oldpassword]" class="form-control" id="exampleInputPasswordSignUp" placeholder="Password">
             </div>
             <div class="form-group">
               <label for="InputPasswordUpdateNew">New Password</label>
-              <input type="password" name="credentials[newpassword]" value="an example password" class="form-control" id="exampleInputPasswordSignUp" placeholder="Password">
+              <input type="password" name="credentials[newpassword]" class="form-control" id="exampleInputPasswordSignUp" placeholder="Password">
             </div>
             <button id="updatePassword" type="submit" class="btn btn-default">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

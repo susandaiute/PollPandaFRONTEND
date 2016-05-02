@@ -71,6 +71,9 @@ const submitQuestion = (success, failure, data) => {
     method: 'POST',
     url: app.api + '/questions',
     data,
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
   }).done(success)
   .fail(failure);
 };
