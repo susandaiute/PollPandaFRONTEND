@@ -1,6 +1,8 @@
 'use strict';
 
 const app = require('./app-data');
+const indexSuccess = require('./ui.js');
+const displayQuestions = require('./templates/question-listing.handlebars');
 
 const signUp = (success, failure, data) => {
   $.ajax({
@@ -54,7 +56,6 @@ $.ajax({
 //////////////   Poll //////////////////
 
 const answerPoll = (success, failure, data) => {
-  debugger;
   $.ajax({
     method: 'POST',
     url: app.api + '/answers',
@@ -78,8 +79,7 @@ const submitQuestion = (success, failure, data) => {
   .fail(failure);
 };
 
-const index = (success, fail) => {
-  console.log('Started request');
+const index = (indexSuccess, fail) => {
   $.ajax({
       method:'GET',
       url: app.api + '/questions',
@@ -87,9 +87,19 @@ const index = (success, fail) => {
         Authorization: 'Token token=' + app.user.token,
       }
   })
-  .done(success)
+  .done(indexSuccess)
   .fail(fail);
-  console.log('Request queued');
+};
+
+const deleteQuestions = (deleteSuccess, failure) => {
+  $.ajax({
+    method: 'DELETE',
+    url: app.api + '/questions/' + app.user.id,
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  }).done(deleteSuccess)
+  .fail(failure);
 };
 
 
@@ -103,4 +113,6 @@ module.exports = {
   answerPoll,
   submitQuestion,
   index,
+  deleteQuestions,
+
 };

@@ -10,6 +10,7 @@ const getFormFields = require('../../lib/get-form-fields');
 const authApi = require('./api');
 const authUi = require('./ui');
 const answer = require('./pollwork');
+const displayQuestions = require('./ui');
 
 ////////////////   Begin User Events   ///////////////
 
@@ -52,7 +53,12 @@ $('#submitQuestionForm').on('submit', function (event) {
   authApi.submitQuestion(authUi.success, authUi.failure, data);
 });
 
-$('.getQuestionsLink').on('click', function (event) {
+$('#getQuestionsLink').on('click', function (event) {
   event.preventDefault();
   authApi.index(authUi.indexSuccess, authUi.failure);
+});
+
+$('#deleteButton').on('click', function (event) {
+  event.preventDefault();
+  authApi.index(authUi.deleteSuccess, authUi.failure);
 });

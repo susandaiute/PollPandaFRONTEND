@@ -3,10 +3,6 @@
 const app = require('./app-data.js');
 const api = require('./api.js');
 
-// const createSuccess = function (data) {
-//   app.game = data.game;
-//   console.log(app);
-// };
 
 const success = (data) => {
   console.log(data);
@@ -26,14 +22,28 @@ const signOutSuccess = () => {
   console.log(app);
 };
 
+const deleteSuccess = () => {
+  console.log('delete success');
+  console.log(app);
+};
+
 // const updateSuccess = function (){
 //   console.log('update worked');
 // };
 //
+
+const displayQuestions = function(questions){
+  let questionListingTemplate = require('./templates/question-listing.handlebars');
+    $('.contentget').append(questionListingTemplate({
+      questions: questions
+    }));
+};
+
 const indexSuccess = function (data) {
   console.log(data);
-  $(".getModalBody").append("<p>You Have Submitted: " + data.questions + "</p>");
+  displayQuestions(data);
 };
+
 
 module.exports = {
   failure,
@@ -42,5 +52,6 @@ module.exports = {
   signOutSuccess,
   // updateSuccess,
   indexSuccess,
-  // createSuccess,
+  deleteSuccess,
+  displayQuestions,
 };
