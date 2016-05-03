@@ -26,13 +26,12 @@ const signOutSuccess = () => {
 };
 
 const deleteSuccess = () => {
-  console.log('delete success');
   console.log(app);
   $('.statusArea').append('Delete was successful');
 };
 
 const updateSuccess = function() {
-  alert('Update was successful');
+  $('.updateStatusArea').append('Update was successful');
 };
 
 const displayQuestions = function(questions) {
@@ -52,11 +51,11 @@ const displayQuestions = function(questions) {
       .fail(failure);
   };
 
-  const updateQuestion = (updateSuccess, failure, id, data) => {
+  const updateQuestion = (updateSuccess, failure, buttonid, data) => {
     console.log(data);
     $.ajax({
         method: 'PATCH',
-        url: app.api + '/questions/' + id,
+        url: app.api + '/questions/' + buttonid,
         data: {
           "question": {
             "title": data.question.title,
@@ -72,7 +71,7 @@ const displayQuestions = function(questions) {
       .fail(failure);
   };
 
-  //added deletebutton event handler, taken from ui. because of handlebars
+  //added deletebutton event handler, taken from ui, because of handlebars
   $('.deleteButton').on('click', function(event) {
     event.preventDefault();
     let buttonid = $(this).data('id');
@@ -81,10 +80,9 @@ const displayQuestions = function(questions) {
 
   $('.updateSubmitButton').on('click', function(event) {
     event.preventDefault();
-    console.log('click fired');
     let data = getFormFields('.updateForm');
     let buttonid = $('.updateButton').data('id');
-    updateQuestion(updateSuccess, failure, buttonid);
+    updateQuestion(updateSuccess, failure, buttonid, data);
     $('#updateQuestion').modal('hide');
   });
 };
