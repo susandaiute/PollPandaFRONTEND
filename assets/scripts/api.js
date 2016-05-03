@@ -102,6 +102,18 @@ const deleteQuestion = (deleteSuccess, failure, id) => {
   .fail(failure);
 };
 
+const updateQuestion = (updateSuccess, failure, id, data) => {
+  $.ajax({
+      method: 'PATCH',
+      url: app.api + '/questions/' + id,
+      data,
+      headers: {
+        Authorization: 'Token token=' + app.user.token,
+      },
+    }).done(updateSuccess)
+    .fail(failure);
+};
+
 
 module.exports = {
   signUp,

@@ -16,7 +16,7 @@ const signInSuccess = (data) => {
   app.user = data.user;
   console.log(app);
   $('.navbar-left').show();
-    $('#signIn').modal('hide');
+  $('#signIn').modal('hide');
 };
 
 const signOutSuccess = () => {
@@ -28,7 +28,7 @@ const signOutSuccess = () => {
 const deleteSuccess = () => {
   console.log('delete success');
   console.log(app);
-  alert("Poll was succesfully deleted");
+  $('.statusArea').append('Delete was successful');
 };
 
 const updateSuccess = function() {
@@ -50,24 +50,26 @@ const displayQuestions = function(questions) {
         },
       }).done(deleteSuccess)
       .fail(failure);
-    const updateQuestion = (updateSuccess, failure, id) => {
-      $.ajax({
-          method: 'PATCH',
-          url: app.api + '/questions/' + id,
-          data: {
-            "question": {
-              "title": data.question.title,
-              "answer1": data.question.answer1,
-              "answer2": data.question.answer2,
-              "answer3": data.question.answer3
-            }
-          },
-          headers: {
-            Authorization: 'Token token=' + app.user.token,
-          },
-        }).done(updateSuccess)
-        .fail(failure);
-    };
+  };
+
+  const updateQuestion = (updateSuccess, failure, id, data) => {
+    console.log(data);
+    $.ajax({
+        method: 'PATCH',
+        url: app.api + '/questions/' + id,
+        data: {
+          "question": {
+            "title": data.question.title,
+            "answer1": data.question.answer1,
+            "answer2": data.question.answer2,
+            "answer3": data.question.answer3
+          }
+        },
+        headers: {
+          Authorization: 'Token token=' + app.user.token,
+        },
+      }).done(updateSuccess)
+      .fail(failure);
   };
 
   //added deletebutton event handler, taken from ui. because of handlebars
@@ -77,10 +79,11 @@ const displayQuestions = function(questions) {
     deleteQuestion(deleteSuccess, failure, buttonid);
   });
 
-  $('.updateForm').on('submit', function(event) {
+  $('.updateSubmitButton').on('click', function(event) {
     event.preventDefault();
-    let data = getFormFields(this);
-    let buttonid = $(this).data('id');
+    console.log('click fired');
+    let data = getFormFields('.updateForm');
+    let buttonid = $('.updateButton').data('id');
     updateQuestion(updateSuccess, failure, buttonid);
     $('#updateQuestion').modal('hide');
   });
