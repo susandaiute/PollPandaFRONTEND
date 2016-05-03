@@ -1,2 +1,26 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+body {
+  background-image: url('http://images.unsplash.com/photo-1426020744253-568cd6345e93?crop=entropy&dpr=2&fit=crop&fm=jpg&h=650&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1150');
+}
+
+.jumbotron {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #f5f5f5;
+  border: 0;
+  box-shadow: 0;
+
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #f5f5f5;
+  border: 0;
+  box-shadow: 0;
+}
+
+.panel {
+  background-color: rgba(0, 0, 0, 0);
+  color: #f5f5f5;
+}
