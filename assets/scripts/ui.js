@@ -27,16 +27,32 @@ const deleteSuccess = () => {
   console.log(app);
 };
 
-// const updateSuccess = function (){
-//   console.log('update worked');
-// };
-//
+const updateSuccess = function (){
+  console.log('update worked');
+};
 
 const displayQuestions = function(questions){
   let questionListingTemplate = require('./templates/question-listing.handlebars');
-    $('.contentget').append(questionListingTemplate({
+    $('.contentGet').append(questionListingTemplate({
       questions: questions
     }));
+    const deleteQuestions = (deleteSuccess, failure, id) => {
+      $.ajax({
+        method: 'DELETE',
+        url: app.api + '/questions/' + id,
+        headers: {
+          Authorization: 'Token token=' + app.user.token,
+        },
+      }).done(deleteSuccess)
+      .fail(failure);
+    };
+
+    //added deletebutton event handler, taken from ui. because of handlebars
+    $('.deleteButton').on('click', function (event) {
+      event.preventDefault();
+      let buttonid = $(this).data('id');
+      deleteQuestions(deleteSuccess, failure, buttonid);
+    });
 };
 
 const indexSuccess = function (data) {
@@ -50,7 +66,7 @@ module.exports = {
   success,
   signInSuccess,
   signOutSuccess,
-  // updateSuccess,
+  updateSuccess,
   indexSuccess,
   deleteSuccess,
   displayQuestions,

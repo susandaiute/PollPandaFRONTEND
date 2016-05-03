@@ -91,15 +91,34 @@ const index = (indexSuccess, fail) => {
   .fail(fail);
 };
 
-const deleteQuestions = (deleteSuccess, failure) => {
+const deleteQuestions = (deleteSuccess, failure, id) => {
   $.ajax({
     method: 'DELETE',
-    url: app.api + '/questions/' + app.user.id,
+    url: app.api + '/questions/' + id,
     headers: {
       Authorization: 'Token token=' + app.user.token,
     },
   }).done(deleteSuccess)
   .fail(failure);
+};
+
+const updateQuestion = (updateSuccess, failure, data) => {
+console.log(app);
+let form = {
+  "question": {
+    "id": data.questions.id,
+    "new": data.questions.newtitle
+  }
+};
+$.ajax({
+  method : 'PATCH',
+  url: app.api + '/change-question/' + app.question.id,
+  data: form,
+  headers: {
+    Authorization: 'Token token=' + app.user.token,
+  },
+}).done(updateSuccess)
+.fail(failure);
 };
 
 
@@ -114,5 +133,6 @@ module.exports = {
   submitQuestion,
   index,
   deleteQuestions,
+  updateQuestion,
 
 };

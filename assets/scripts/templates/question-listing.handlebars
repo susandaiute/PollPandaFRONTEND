@@ -1,10 +1,16 @@
 <div class='all-questions'>
  {{#each questions}}
+  {{#each this}}
+
  <div>
-   <p><strong>Question: {{this.title}}</strong></p>
-   <p>Answer 1: {{this.answer1}}</p>
-   <p>Answer 2: {{this.answer2}}</p>
-   <p>Answer 3: {{this.answer3}}</p>
+   <p><strong>Question: {{title}}</strong></p>
+   <p>Answer 1: {{answer1}}</p>
+   <p>Answer 2: {{answer2}}</p>
+   <p>Answer 3: {{answer3}}</p>
+   <button type="button" data-id="{{id}}" class="btn btn-danger deleteButton">Delete</button>
+   <button type="button" data-id="{{id}}" id="updateButton" class="btn btn-default">Edit</button>
  </div>
+
+  {{/each}}
  {{/each}}
 </div>

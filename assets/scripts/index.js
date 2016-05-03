@@ -58,7 +58,9 @@ $('#getQuestionsLink').on('click', function (event) {
   authApi.index(authUi.indexSuccess, authUi.failure);
 });
 
-$('#deleteButton').on('click', function (event) {
+/////// class /////
+$('#updateForm').on('submit', function (event) {
   event.preventDefault();
-  authApi.index(authUi.deleteSuccess, authUi.failure);
+  let data = getFormFields(this);
+  authApi.updateQuestion(authUi.updateSuccess, authUi.failure, data);
 });
