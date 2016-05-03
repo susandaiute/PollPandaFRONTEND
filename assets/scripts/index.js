@@ -51,16 +51,10 @@ $('#submitQuestionForm').on('submit', function (event) {
   event.preventDefault();
   let data = getFormFields(this);
   authApi.submitQuestion(authUi.success, authUi.failure, data);
+  $('#submitQuestion').modal('hide');
 });
 
 $('#getQuestionsLink').on('click', function (event) {
   event.preventDefault();
   authApi.index(authUi.indexSuccess, authUi.failure);
-});
-
-/////// class /////
-$('#updateForm').on('submit', function (event) {
-  event.preventDefault();
-  let data = getFormFields(this);
-  authApi.updateQuestion(authUi.updateSuccess, authUi.failure, data);
 });

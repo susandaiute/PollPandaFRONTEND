@@ -91,7 +91,7 @@ const index = (indexSuccess, fail) => {
   .fail(fail);
 };
 
-const deleteQuestions = (deleteSuccess, failure, id) => {
+const deleteQuestion = (deleteSuccess, failure, id) => {
   $.ajax({
     method: 'DELETE',
     url: app.api + '/questions/' + id,
@@ -102,27 +102,6 @@ const deleteQuestions = (deleteSuccess, failure, id) => {
   .fail(failure);
 };
 
-const updateQuestion = (updateSuccess, failure, data) => {
-console.log(app);
-let form = {
-  "question": {
-    "id": data.questions.id,
-    "new": data.questions.newtitle
-  }
-};
-$.ajax({
-  method : 'PATCH',
-  url: app.api + '/change-question/' + app.question.id,
-  data: form,
-  headers: {
-    Authorization: 'Token token=' + app.user.token,
-  },
-}).done(updateSuccess)
-.fail(failure);
-};
-
-
-
 
 module.exports = {
   signUp,
@@ -132,7 +111,6 @@ module.exports = {
   answerPoll,
   submitQuestion,
   index,
-  deleteQuestions,
+  deleteQuestion,
   updateQuestion,
-
 };

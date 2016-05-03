@@ -23,14 +23,9 @@
       <div class="container-fluid">
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-left">
+          <ul class="nav navbar-nav navbar-left" style="display:none" >
             <li data-toggle="modal" data-target="#submitQuestion"><a href="#">Submit Your Own Polls</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-left">
             <li data-toggle="modal" data-target="#getQuestions"><a href="#" id="getQuestionsLink">See All Submitted Polls</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-left">
-            <li data-toggle="modal" data-target="#updateQuestions"><a href="#" id="updateQuestionsLink">Update My Poll</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li id="register" data-toggle="modal" data-target="#signUp"><a href="#">Register</a></li>
@@ -107,7 +102,7 @@
   <!-- End Get Questions Modal -->
 
   <!-- Begin Update Question Modal -->
-  <div class="modal fade update questions" id="updateQuestions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade update questions" id="updateQuestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -115,16 +110,24 @@
           <h4 class="modal-title" id="myModalLabel">Update My Poll</h4>
         </div>
         <div class="modal-body">
-          <label for="updateQuestionChoose">Which poll would you like to update?</label>
+          <label for="updateQuestionTitle">Question</label>
           <form name="updateQuestionForm" id="updateForm">
             <div class="form-group">
-              <input type="integer" name="question[id]" class="form-control grabthis" id="patchChooseId" placeholder="ID">
+              <input type="text" name="question[title]" class="form-control grabthis" id="updateQuestionTitle" placeholder="Question">
             </div>
             <div class="form-group">
-              <label for="inputQuestion">Question</label>
-              <input type="text" name="question[title]" class="form-control grabthis" id="updateQuestion1" placeholder="Update Question Title">
+              <label for="inputQuestion">Answer 1</label>
+              <input type="text" name="question[answer1]" class="form-control grabthis" id="updateAnswer1" placeholder="Answer 1">
             </div>
-            <button id='updatePatch' type="submit" class="btn btn-default">Submit</button>
+            <div class="form-group">
+              <label for="inputQuestion">Answer 2</label>
+              <input type="text" name="question[answer2]" class="form-control grabthis" id="updateAnswer2" placeholder="Answer 2">
+            </div>
+            <div class="form-group">
+              <label for="inputQuestion">Answer 3</label>
+              <input type="text" name="question[answer3]" class="form-control grabthis" id="updateAnswer3" placeholder="Answer 3">
+            </div>
+            <button id='updatePatch' type="submit"class="btn btn-default">Submit</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </form>
         </div>

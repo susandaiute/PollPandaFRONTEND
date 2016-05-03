@@ -2,7 +2,7 @@
 
 const app = require('./app-data.js');
 const api = require('./api.js');
-
+const getFormFields = require('../../lib/get-form-fields');
 
 const success = (data) => {
   console.log(data);
@@ -15,29 +15,34 @@ const failure = (error) => {
 const signInSuccess = (data) => {
   app.user = data.user;
   console.log(app);
+  $('.navbar-left').show();
+    $('#signIn').modal('hide');
 };
 
 const signOutSuccess = () => {
   app.user = null;
   console.log(app);
+  $('.navbar-left').hide();
 };
 
 const deleteSuccess = () => {
   console.log('delete success');
   console.log(app);
+  alert("Poll was succesfully deleted");
 };
 
-const updateSuccess = function (){
-  console.log('update worked');
+const updateSuccess = function() {
+  alert('Update was successful');
 };
 
-const displayQuestions = function(questions){
+const displayQuestions = function(questions) {
   let questionListingTemplate = require('./templates/question-listing.handlebars');
-    $('.contentGet').append(questionListingTemplate({
-      questions: questions
-    }));
-    const deleteQuestions = (deleteSuccess, failure, id) => {
-      $.ajax({
+  $('.contentGet').html('');
+  $('.contentGet').append(questionListingTemplate({
+    questions: questions
+  }));
+  const deleteQuestion = (deleteSuccess, failure, id) => {
+    $.ajax({
         method: 'DELETE',
         url: app.api + '/questions/' + id,
         headers: {
@@ -45,17 +50,43 @@ const displayQuestions = function(questions){
         },
       }).done(deleteSuccess)
       .fail(failure);
+    const updateQuestion = (updateSuccess, failure, id) => {
+      $.ajax({
+          method: 'PATCH',
+          url: app.api + '/questions/' + id,
+          data: {
+            "question": {
+              "title": data.question.title,
+              "answer1": data.question.answer1,
+              "answer2": data.question.answer2,
+              "answer3": data.question.answer3
+            }
+          },
+          headers: {
+            Authorization: 'Token token=' + app.user.token,
+          },
+        }).done(updateSuccess)
+        .fail(failure);
     };
+  };
 
-    //added deletebutton event handler, taken from ui. because of handlebars
-    $('.deleteButton').on('click', function (event) {
-      event.preventDefault();
-      let buttonid = $(this).data('id');
-      deleteQuestions(deleteSuccess, failure, buttonid);
-    });
+  //added deletebutton event handler, taken from ui. because of handlebars
+  $('.deleteButton').on('click', function(event) {
+    event.preventDefault();
+    let buttonid = $(this).data('id');
+    deleteQuestion(deleteSuccess, failure, buttonid);
+  });
+
+  $('.updateForm').on('submit', function(event) {
+    event.preventDefault();
+    let data = getFormFields(this);
+    let buttonid = $(this).data('id');
+    updateQuestion(updateSuccess, failure, buttonid);
+    $('#updateQuestion').modal('hide');
+  });
 };
 
-const indexSuccess = function (data) {
+const indexSuccess = function(data) {
   console.log(data);
   displayQuestions(data);
 };
@@ -70,4 +101,5 @@ module.exports = {
   indexSuccess,
   deleteSuccess,
   displayQuestions,
+  updateQuestion,
 };
