@@ -78,9 +78,9 @@ const displayQuestions = function(questions) {
     deleteQuestion(deleteSuccess, failure, buttonid);
   });
 
-  $('.updateSubmitButton').on('click', function(event) {
+  $('#updateForm').on('submit', function(event) {
     event.preventDefault();
-    let data = getFormFields('.updateForm');
+    let data = getFormFields(this);
     let buttonid = $('.updateButton').data('id');
     updateQuestion(updateSuccess, failure, buttonid, data);
     $('#updateQuestion').modal('hide');
