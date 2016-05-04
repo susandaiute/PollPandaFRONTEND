@@ -1,7 +1,7 @@
 'use strict';
 
 const app = {
-  api: 'http://localhost:3000',
+  api: 'https://git.heroku.com/salty-bayou-99949.git',
 };
 
 module.exports = app;
