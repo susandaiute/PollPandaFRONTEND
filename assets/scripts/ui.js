@@ -78,11 +78,16 @@ const displayQuestions = function(questions) {
     deleteQuestion(deleteSuccess, failure, buttonid);
   });
 
+  let updateQuestionId;
+
+$('.updateButton').on('click', function(event) {
+  updateQuestionId = $(this).data('id');
+});
+
   $('#updateForm').on('submit', function(event) {
     event.preventDefault();
     let data = getFormFields(this);
-    let buttonid = $('.updateButton').data('id');
-    updateQuestion(updateSuccess, failure, buttonid, data);
+    updateQuestion(updateSuccess, failure, updateQuestionId, data);
     $('#updateQuestion').modal('hide');
   });
 };
