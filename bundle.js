@@ -373,11 +373,16 @@ webpackJsonp([0],[
 	    deleteQuestion(deleteSuccess, failure, buttonid);
 	  });
 
+	  var updateQuestionId = void 0;
+
+	  $('.updateButton').on('click', function (event) {
+	    updateQuestionId = $(this).data('id');
+	  });
+
 	  $('#updateForm').on('submit', function (event) {
 	    event.preventDefault();
 	    var data = getFormFields(this);
-	    var buttonid = $('.updateButton').data('id');
-	    updateQuestion(updateSuccess, failure, buttonid, data);
+	    updateQuestion(updateSuccess, failure, updateQuestionId, data);
 	    $('#updateQuestion').modal('hide');
 	  });
 	};
