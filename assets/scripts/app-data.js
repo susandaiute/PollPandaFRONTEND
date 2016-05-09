@@ -1,7 +1,11 @@
 'use strict';
 
 const app = {
-  api: 'https://git.heroku.com/salty-bayou-99949.git',
+  api: 'https://salty-bayou-99949.herokuapp.com',
 };
 
 module.exports = app;
+
+
+
+//api: 'https://salty-bayou-99949.herokuapp.com',
