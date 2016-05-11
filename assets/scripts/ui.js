@@ -23,6 +23,7 @@ const signOutSuccess = () => {
   app.user = null;
   console.log(app);
   $('.navbar-left').hide();
+  $('.modal-backdrop.in').hide();
 };
 
 const deleteSuccess = () => {
@@ -31,6 +32,7 @@ const deleteSuccess = () => {
 };
 
 const updateSuccess = function() {
+  $('.updateStatusArea').html('');
   $('.updateStatusArea').append('Update was successful');
 };
 
@@ -40,6 +42,8 @@ const displayQuestions = function(questions) {
   $('.contentGet').append(questionListingTemplate({
     questions: questions
   }));
+};
+
   const deleteQuestion = (deleteSuccess, failure, id) => {
     $.ajax({
         method: 'DELETE',
@@ -71,8 +75,10 @@ const displayQuestions = function(questions) {
       .fail(failure);
   };
 
+
+
   //added deletebutton event handler, taken from ui, because of handlebars
-  $('.deleteButton').on('click', function(event) {
+  $('.container-fluid').on('click', '.deleteButton', function(event) {
     event.preventDefault();
     let buttonid = $(this).data('id');
     deleteQuestion(deleteSuccess, failure, buttonid);
@@ -80,7 +86,7 @@ const displayQuestions = function(questions) {
 
   let updateQuestionId;
 
-$('.updateButton').on('click', function(event) {
+$('.container-fluid').on('click', '.updateButton', function(event) {
   updateQuestionId = $(this).data('id');
 });
 
@@ -88,9 +94,11 @@ $('.updateButton').on('click', function(event) {
     event.preventDefault();
     let data = getFormFields(this);
     updateQuestion(updateSuccess, failure, updateQuestionId, data);
-    $('#updateQuestion').modal('hide');
+    $('#updateQuestionMod').modal('hide');
   });
-};
+
+
+
 
 const indexSuccess = function(data) {
   console.log(data);
@@ -107,5 +115,5 @@ module.exports = {
   indexSuccess,
   deleteSuccess,
   displayQuestions,
-  updateQuestion,
+  // updateQuestion,
 };

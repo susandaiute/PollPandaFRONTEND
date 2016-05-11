@@ -320,6 +320,7 @@ webpackJsonp([0],[
 	  app.user = null;
 	  console.log(app);
 	  $('.navbar-left').hide();
+	  $('.modal-backdrop.in').hide();
 	};
 
 	var deleteSuccess = function deleteSuccess() {
@@ -328,6 +329,7 @@ webpackJsonp([0],[
 	};
 
 	var updateSuccess = function updateSuccess() {
+	  $('.updateStatusArea').html('');
 	  $('.updateStatusArea').append('Update was successful');
 	};
 
@@ -337,55 +339,56 @@ webpackJsonp([0],[
 	  $('.contentGet').append(questionListingTemplate({
 	    questions: questions
 	  }));
-	  var deleteQuestion = function deleteQuestion(deleteSuccess, failure, id) {
-	    $.ajax({
-	      method: 'DELETE',
-	      url: app.api + '/questions/' + id,
-	      headers: {
-	        Authorization: 'Token token=' + app.user.token
-	      }
-	    }).done(deleteSuccess).fail(failure);
-	  };
-
-	  var updateQuestion = function updateQuestion(updateSuccess, failure, buttonid, data) {
-	    console.log(data);
-	    $.ajax({
-	      method: 'PATCH',
-	      url: app.api + '/questions/' + buttonid,
-	      data: {
-	        "question": {
-	          "title": data.question.title,
-	          "answer1": data.question.answer1,
-	          "answer2": data.question.answer2,
-	          "answer3": data.question.answer3
-	        }
-	      },
-	      headers: {
-	        Authorization: 'Token token=' + app.user.token
-	      }
-	    }).done(updateSuccess).fail(failure);
-	  };
-
-	  //added deletebutton event handler, taken from ui, because of handlebars
-	  $('.deleteButton').on('click', function (event) {
-	    event.preventDefault();
-	    var buttonid = $(this).data('id');
-	    deleteQuestion(deleteSuccess, failure, buttonid);
-	  });
-
-	  var updateQuestionId = void 0;
-
-	  $('.updateButton').on('click', function (event) {
-	    updateQuestionId = $(this).data('id');
-	  });
-
-	  $('#updateForm').on('submit', function (event) {
-	    event.preventDefault();
-	    var data = getFormFields(this);
-	    updateQuestion(updateSuccess, failure, updateQuestionId, data);
-	    $('#updateQuestion').modal('hide');
-	  });
 	};
+
+	var deleteQuestion = function deleteQuestion(deleteSuccess, failure, id) {
+	  $.ajax({
+	    method: 'DELETE',
+	    url: app.api + '/questions/' + id,
+	    headers: {
+	      Authorization: 'Token token=' + app.user.token
+	    }
+	  }).done(deleteSuccess).fail(failure);
+	};
+
+	var updateQuestion = function updateQuestion(updateSuccess, failure, buttonid, data) {
+	  console.log(data);
+	  $.ajax({
+	    method: 'PATCH',
+	    url: app.api + '/questions/' + buttonid,
+	    data: {
+	      "question": {
+	        "title": data.question.title,
+	        "answer1": data.question.answer1,
+	        "answer2": data.question.answer2,
+	        "answer3": data.question.answer3
+	      }
+	    },
+	    headers: {
+	      Authorization: 'Token token=' + app.user.token
+	    }
+	  }).done(updateSuccess).fail(failure);
+	};
+
+	//added deletebutton event handler, taken from ui, because of handlebars
+	$('.container-fluid').on('click', '.deleteButton', function (event) {
+	  event.preventDefault();
+	  var buttonid = $(this).data('id');
+	  deleteQuestion(deleteSuccess, failure, buttonid);
+	});
+
+	var updateQuestionId = void 0;
+
+	$('.container-fluid').on('click', '.updateButton', function (event) {
+	  updateQuestionId = $(this).data('id');
+	});
+
+	$('#updateForm').on('submit', function (event) {
+	  event.preventDefault();
+	  var data = getFormFields(this);
+	  updateQuestion(updateSuccess, failure, updateQuestionId, data);
+	  $('#updateQuestionMod').modal('hide');
+	});
 
 	var indexSuccess = function indexSuccess(data) {
 	  console.log(data);
@@ -400,8 +403,7 @@ webpackJsonp([0],[
 	  updateSuccess: updateSuccess,
 	  indexSuccess: indexSuccess,
 	  deleteSuccess: deleteSuccess,
-	  displayQuestions: displayQuestions,
-	  updateQuestion: updateQuestion
+	  displayQuestions: displayQuestions
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -430,7 +432,7 @@ webpackJsonp([0],[
 	    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
 	    + "\" class=\"btn btn-danger deleteButton\">Delete</button>\n   <button type=\"button\" data-id=\""
 	    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-	    + "\" data-toggle=\"modal\" data-target=\"#updateQuestion\" class=\"btn btn-default updateButton\">Edit</button>\n </div>\n\n";
+	    + "\" data-toggle=\"modal\" data-target=\"#updateQuestionMod\" class=\"btn btn-default updateButton\">Edit</button>\n </div>\n\n";
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var stack1;
 
